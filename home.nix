@@ -1,4 +1,4 @@
-{ pkgs, ... }:
+{ pkgs, config, ... }:
 
 {
   home.username = "jrollins";
@@ -51,7 +51,8 @@
         };
       };
       github.user = "josephmr";
-      core.excludesfile = "~/.gitignore";
+      core.excludesfile = "${config.home.homeDirectory}/.gitignore";
+      core.pager = "less -FRX";
     };
   };
 }
