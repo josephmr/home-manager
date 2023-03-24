@@ -77,6 +77,13 @@
       }
 
       preexec_functions+=(set_tmux_title)
+
+      # Global config for non-nix project which expects brew + nvm + ruby
+      # TODO try to remove needing these globally
+      eval "$(/opt/homebrew/bin/brew shellenv)"
+      export NVM_DIR="$HOME/.nvm"
+      [ -s "/opt/homebrew/opt/nvm/nvm.sh" ] && . "/opt/homebrew/opt/nvm/nvm.sh"  # This loads nvm
+      export PATH=$(brew --prefix ruby)/bin:$(brew --prefix)/lib/ruby/gems/3.1.0/bin:$PATH
     '';
   };
 
