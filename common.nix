@@ -135,6 +135,17 @@
       }
 
       preexec_functions+=(set_tmux_title)
+
+      function ssh-check-agent() {
+        if [ ! -S $HOME/.ssh/ssh_auth_sock ]; then
+          eval `ssh-agent` > /dev/null
+          ln -sf "$SSH_AUTH_SOCK" $HOME/.ssh/ssh_auth_sock
+        fi
+        export SSH_AUTH_SOCK=$HOME/.ssh/ssh_auth_sock
+        ssh-add -l > /dev/null || rg -l "PRIVATE" ~/.config/ssh | xargs -I {} ssh-add {} 2> /dev/null
+      }
+
+      ssh-check-agent
     '';
   };
 }
