@@ -1,3 +1,5 @@
+# UNUSED: leaving as example for future modules.
+# TODO: remove after other modules exist.
 { config, lib, ... }:
 
 with lib;

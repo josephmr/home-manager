@@ -1,3 +1,5 @@
+# UNUSED: leaving for the future.
+# TODO: Figure out how to overlay my lib with main lib.
 { lib, ... }:
 
 let
