@@ -1,6 +1,8 @@
 { pkgs, config, ... }:
 
 {
+  imports = [ ./modules/emacs.nix ];
+
   home.stateVersion = "22.11";
   programs.home-manager.enable = true;
 
@@ -19,15 +21,21 @@
     glances
   ];
 
+  xdg.enable = true;
   xdg.configFile."nixpkgs/config.nix".source = ./nixpkgs-config.nix;
+
+  modules.emacs.enable = true;
 
   programs.git = {
     enable = true;
     userName = "Joseph Rollins";
     extraConfig = {
-      url = {
-        "ssh://git@github.com/" = { insteadOf = "https://github.com/"; };
-      };
+      # TODO: Might still need this for work, but it breaks doom
+      # install `home.activation` script.
+      # https://discourse.nixos.org/t/home-manager-home-activation-access-to-packages-in-home-packages/26732
+      # url = {
+      #   "ssh://git@github.com/" = { insteadOf = "https://github.com/"; };
+      # };
       github.user = "josephmr";
       core.excludesfile = "${config.home.homeDirectory}/.gitignore";
       core.pager = "delta";
