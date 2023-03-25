@@ -10,17 +10,21 @@
     };
   };
 
-  outputs = { nixpkgs, home-manager, ...}:
+  outputs = { nixpkgs, home-manager, ... }:
     let
-      system = "aarch64-darwin";
-      pkgs = nixpkgs.legacyPackages.${system};
+      darwinPkgs = nixpkgs.legacyPackages.aarch64-darwin;
+      linuxPkgs = nixpkgs.legacyPackages.x86_64-linux;
     in {
-      homeConfigurations.jrollins = home-manager.lib.homeManagerConfiguration {
-        inherit pkgs;
+      homeConfigurations = {
+        "jrollins@Josephs-MBP" = home-manager.lib.homeManagerConfiguration {
+          pkgs = darwinPkgs;
+          modules = [ ./common.nix ./hosts/mbp.nix ];
+        };
 
-        modules = [
-          ./home.nix
-        ];
+        "fortruce@weasl" = home-manager.lib.homeManagerConfiguration {
+          pkgs = linuxPkgs;
+          modules = [ ./common.nix ./hosts/weasl.nix ];
+        };
       };
     };
 }
