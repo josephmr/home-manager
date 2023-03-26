@@ -29,12 +29,19 @@ in {
 
     home.sessionPath = [ "${config.xdg.configHome}/emacs/bin" ];
 
-    # TODO: create my own doom config and clone it here
+    # TODO: Maybe this can be simplified. See https://discourse.nixos.org/t/home-manager-home-activation-access-to-packages-in-home-packages/26732
     home.activation.install-doom = hm.dag.entryAfter [ "writeBoundary" ] ''
       if ! [ -d "${config.xdg.configHome}/emacs" ]; then
-        $DRY_RUN_CMD ${
-          getExe pkgs.git
-        } clone $VERBOSE_ARG --depth=1 --single-branch "https://github.com/doomemacs/doomemacs.git" "${config.xdg.configHome}/emacs"
+        PATH="${pkgs.git}/bin:${pkgs.openssh}/bin:$PATH" \
+          $DRY_RUN_CMD git clone $VERBOSE_ARG --depth=1 --single-branch \
+          "https://github.com/doomemacs/doomemacs.git" \
+          "${config.xdg.configHome}/emacs"
+      fi
+      if ! [ -d "$HOME/.doom.d" ]; then
+         PATH="${pkgs.git}/bin:${pkgs.openssh}/bin:$PATH" \
+          $DRY_RUN_CMD git clone $VERBOSE_ARG --depth=1 --single-branch \
+          "https://github.com/josephmr/.doom.d.git" \
+          "$HOME/.doom.d"
       fi
     '';
   };

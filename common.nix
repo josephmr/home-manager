@@ -8,6 +8,7 @@
 
   home.packages = with pkgs; [
     overmind
+    openssh
     ripgrep
     httpie
     jq
@@ -33,9 +34,9 @@
       # TODO: Might still need this for work, but it breaks doom
       # install `home.activation` script.
       # https://discourse.nixos.org/t/home-manager-home-activation-access-to-packages-in-home-packages/26732
-      # url = {
-      #   "ssh://git@github.com/" = { insteadOf = "https://github.com/"; };
-      # };
+      url = {
+        "ssh://git@github.com/" = { insteadOf = "https://github.com/"; };
+      };
       github.user = "josephmr";
       core.excludesfile = "${config.home.homeDirectory}/.gitignore";
       core.pager = "delta";
