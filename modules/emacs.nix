@@ -25,6 +25,8 @@ in {
       ## Optional dependencies
       fd # faster projectile indexing
       imagemagick # for image-dired
+
+      nixfmt
     ];
 
     home.sessionPath = [ "${config.xdg.configHome}/emacs/bin" ];
