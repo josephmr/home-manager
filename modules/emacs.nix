@@ -12,7 +12,9 @@ in {
 
   config = mkIf cfg.enable {
     home.packages = with pkgs; [
-      binutils
+      # TODO: this messes up darwin, do we need for linux?
+      # binutils
+
       # 28.2 + native-comp
       ((emacsPackagesFor emacsNativeComp).emacsWithPackages
         (epkgs: [ epkgs.vterm ]))

@@ -19,6 +19,7 @@
     duf
     choose
     glances
+    tailscale
   ];
 
   xdg.enable = true;
@@ -30,9 +31,6 @@
     enable = true;
     userName = "Joseph Rollins";
     extraConfig = {
-      # TODO: Might still need this for work, but it breaks doom
-      # install `home.activation` script.
-      # https://discourse.nixos.org/t/home-manager-home-activation-access-to-packages-in-home-packages/26732
       url = {
         "ssh://git@github.com/" = { insteadOf = "https://github.com/"; };
         "https://github.com/" = { insteadOf = "gh:"; };
@@ -74,7 +72,7 @@
 
     extraConfig = ''
       set -g pane-border-status top
-      set -g pane-active-border-style "bg=#28E945"
+      set -g pane-active-border-style "bg=#77C3EC"
     '';
   };
 
