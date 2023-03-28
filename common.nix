@@ -111,7 +111,8 @@
     shellAliases = {
       emacsd = "emacs --daemon";
       emacsc = "emacsclient -nc";
-      cat = "bat";
+      emacs-kill = ''emacsclient -e "(kill-emacs)"'';
+      cat = "bat --paging=never";
     };
     initExtra = ''
       autoload -U promptinit; promptinit
@@ -145,6 +146,8 @@
       }
 
       ssh-check-agent
+
+      export LESS="--no-init --quit-if-one-screen -R"
     '';
   };
 }
