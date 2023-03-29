@@ -30,10 +30,6 @@
   programs.alacritty = {
     enable = true;
     settings = {
-      window.padding = {
-        x = 10;
-        y = 10;
-      };
       font.normal.family = "Fira Code";
       font.size = 14;
     };
@@ -84,7 +80,10 @@
 
     extraConfig = ''
       set -g pane-border-status top
-      set -g pane-active-border-style "bg=#77C3EC"
+      set -g pane-active-border-style "bg=#77C3EC,fg=black"
+      set -g pane-border-style "bg=#2C3136,fg=white"
+      set -g window-style "bg=#2C3136"
+      set -g window-active-style "bg=black"
     '';
   };
 
@@ -125,6 +124,7 @@
       emacsc = "emacsclient -nc";
       emacs-kill = ''emacsclient -e "(kill-emacs)"'';
       cat = "bat --paging=never";
+      gsource = "source $HOME/github/guilded/guilded_profile.sh";
     };
     initExtra = ''
       autoload -U promptinit; promptinit
