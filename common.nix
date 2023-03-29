@@ -27,6 +27,18 @@
 
   modules.emacs.enable = true;
 
+  programs.alacritty = {
+    enable = true;
+    settings = {
+      window.padding = {
+        x = 10;
+        y = 10;
+      };
+      font.normal.family = "Fira Code";
+      font.size = 14;
+    };
+  };
+
   programs.git = {
     enable = true;
     userName = "Joseph Rollins";
