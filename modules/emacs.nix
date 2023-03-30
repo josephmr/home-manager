@@ -11,28 +11,29 @@ in {
   };
 
   config = mkIf cfg.enable {
-    home.packages = with pkgs; [
-      # TODO: this messes up darwin, do we need for linux?
-      # binutils
+    home.packages = with pkgs;
+      [
+        # TODO: this messes up darwin, do we need for linux?
+        # binutils
 
-      # for org-download
-      pngpaste
+        # 28.2 + native-comp
+        ((emacsPackagesFor emacsNativeComp).emacsWithPackages
+          (epkgs: [ epkgs.vterm ]))
 
-      # 28.2 + native-comp
-      ((emacsPackagesFor emacsNativeComp).emacsWithPackages
-        (epkgs: [ epkgs.vterm ]))
+        ## Doom dependencies
+        git
+        (ripgrep.override { withPCRE2 = true; })
+        gnutls # for TLS connectivity
 
-      ## Doom dependencies
-      git
-      (ripgrep.override { withPCRE2 = true; })
-      gnutls # for TLS connectivity
+        ## Optional dependencies
+        fd # faster projectile indexing
+        imagemagick # for image-dired
 
-      ## Optional dependencies
-      fd # faster projectile indexing
-      imagemagick # for image-dired
-
-      nixfmt
-    ];
+        nixfmt
+      ] ++ lib.optionals stdenv.hostPlatform.isDarwin [
+        # for org-download
+        pngpaste
+      ];
 
     home.sessionPath = [ "${config.xdg.configHome}/emacs/bin" ];
 
