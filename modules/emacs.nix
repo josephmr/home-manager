@@ -15,6 +15,9 @@ in {
       # TODO: this messes up darwin, do we need for linux?
       # binutils
 
+      # for org-download
+      pngpaste
+
       # 28.2 + native-comp
       ((emacsPackagesFor emacsNativeComp).emacsWithPackages
         (epkgs: [ epkgs.vterm ]))
