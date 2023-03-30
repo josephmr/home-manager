@@ -4,8 +4,8 @@
   home = {
     stateVersion = "22.11";
 
-    username = "fortruce";
-    homeDirectory = "/home/fortruce";
+    username = "joseph";
+    homeDirectory = "/home/joseph";
   };
 
   programs.git.userEmail = "rollins.joseph@gmail.com";

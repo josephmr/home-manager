@@ -27,6 +27,14 @@
         };
         modules = [ ./common.nix ./hosts/weasl.nix ];
       };
+
+      "joseph@starship" = home-manager.lib.homeManagerConfiguration {
+        pkgs = import nixpkgs {
+          system = "x86_64-linux";
+          config.allowUnfree = true;
+        };
+        modules = [ ./common.nix ./hosts/starship.nix ];
+      };
     };
   };
 }

@@ -1,7 +1,7 @@
 { pkgs, config, ... }:
 
 {
-  imports = [ ./modules/emacs.nix ];
+  imports = [ ./modules/emacs.nix ./modules/tailscale.nix ];
 
   home.stateVersion = "22.11";
   programs.home-manager.enable = true;
@@ -19,13 +19,13 @@
     duf
     choose
     glances
-    tailscale
   ];
 
   xdg.enable = true;
   xdg.configFile."nixpkgs/config.nix".source = ./nixpkgs-config.nix;
 
   modules.emacs.enable = true;
+  modules.tailscale.enable = true;
 
   programs.alacritty = {
     enable = true;
