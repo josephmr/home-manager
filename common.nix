@@ -19,10 +19,13 @@
     duf
     choose
     glances
+    nerdfonts
   ];
 
   xdg.enable = true;
   xdg.configFile."nixpkgs/config.nix".source = ./nixpkgs-config.nix;
+
+  fonts.fontconfig.enable = true;
 
   modules.emacs.enable = true;
   modules.tailscale.enable = true;
