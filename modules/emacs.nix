@@ -13,12 +13,10 @@ in {
   config = mkIf cfg.enable {
     home.packages = with pkgs;
       [
-        # TODO: this messes up darwin, do we need for linux?
-        # binutils
-
         # 28.2 + native-comp
         ((emacsPackagesFor emacsNativeComp).emacsWithPackages
           (epkgs: [ epkgs.vterm ]))
+        emacs-all-the-icons-fonts
 
         ## Doom dependencies
         git
@@ -33,7 +31,7 @@ in {
       ] ++ lib.optionals stdenv.hostPlatform.isDarwin [
         # for org-download
         pngpaste
-      ];
+      ] ++ lib.optionals stdenv.hostPlatform.isLinux [ xclip ];
 
     home.sessionPath = [ "${config.xdg.configHome}/emacs/bin" ];
 
