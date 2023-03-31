@@ -28,10 +28,10 @@ in {
         imagemagick # for image-dired
 
         nixfmt
-      ] ++ lib.optionals stdenv.hostPlatform.isDarwin [
+      ] ++ optionals stdenv.hostPlatform.isDarwin [
         # for org-download
         pngpaste
-      ] ++ lib.optionals stdenv.hostPlatform.isLinux [ xclip ];
+      ] ++ optionals stdenv.hostPlatform.isLinux [ xclip ];
 
     home.sessionPath = [ "${config.xdg.configHome}/emacs/bin" ];
 

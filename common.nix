@@ -1,7 +1,8 @@
 { pkgs, config, ... }:
 
 {
-  imports = [ ./modules/emacs.nix ./modules/tailscale.nix ];
+  imports =
+    [ ./modules/emacs.nix ./modules/tailscale.nix ./modules/spotify.nix ];
 
   home.stateVersion = "22.11";
   programs.home-manager.enable = true;
@@ -23,12 +24,14 @@
   ];
 
   xdg.enable = true;
+  targets.genericLinux.enable = pkgs.stdenv.hostPlatform.isLinux;
   xdg.configFile."nixpkgs/config.nix".source = ./nixpkgs-config.nix;
 
   fonts.fontconfig.enable = true;
 
   modules.emacs.enable = true;
   modules.tailscale.enable = true;
+  modules.spotify.enable = true;
 
   programs.alacritty = {
     enable = true;
