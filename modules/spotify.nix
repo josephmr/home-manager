@@ -12,7 +12,7 @@ in {
 
   config = mkIf cfg.enable (mkMerge [
     { home.packages = with pkgs; [ spotify ]; }
-    (mkIf true {
+    (mkIf pkgs.stdenv.hostPlatform.isLinux {
       xdg.desktopEntries.spotify = {
         name = "Spotify";
         exec = "${getExe pkgs.spotify}";

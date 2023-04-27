@@ -1,13 +1,15 @@
 { ... }:
 
 {
-  imports = [ ../modules/git.nix ];
-
   home = {
     stateVersion = "22.11";
 
     username = "jrollins";
     homeDirectory = "/Users/jrollins";
+
+    file.".config/skhd".source = ../config/skhd;
+    file.".config/yabai".source = ../config/yabai;
+    file.".config/sketchybar".source = ../config/sketchybar;
   };
 
   programs.git = {
@@ -21,6 +23,8 @@
     };
   };
 
+  programs.zsh.shellAliases.sketchybar-start =
+    "tmux new-session -d -s sketchybar sketchybar";
   programs.zsh.initExtra = ''
     # Global config for non-nix project which expects brew + nvm + ruby
     # TODO try to remove needing these globally

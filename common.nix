@@ -31,7 +31,6 @@
 
   modules.emacs.enable = true;
   modules.tailscale.enable = true;
-  modules.spotify.enable = true;
 
   programs.alacritty = {
     enable = true;
