@@ -38,13 +38,10 @@ cmd + shift - s : yabai -m window --ratio rel:0.1
 cmd + shift - d : yabai -m window --ratio rel:-0.1
 cmd + shift - f : yabai -m window --ratio rel:0.1
 
-cmd + shift + ctrl - r : brew services restart yabai
-
-cmd - return: open -n -a alacritty
-
-# Toggle sketchybar
-cmd + shift - space : sketchybar --bar hidden=toggle
+cmd + shift + ctrl - r : yabai --restart-service
 cmd + shift + ctrl - r : sketchybar --remove '/.*/' && sh -c '$HOME/.config/sketchybar/sketchybarrc'
+
+cmd - return: open -n -a /Users/joseph/.nix-profile/bin/alacritty
 
 # Enable / Disable gaps in current workspace
 cmd + shift + ctrl - b : yabai -m config window_border `$(yabai -m query --windows --window | jq '."has-border"') && echo "off" || echo "on"`

@@ -12,7 +12,7 @@
 
   outputs = { nixpkgs, home-manager, ... }: {
     homeConfigurations = {
-      "jrollins@Josephs-MBP" = home-manager.lib.homeManagerConfiguration {
+      "joseph@guilded" = home-manager.lib.homeManagerConfiguration {
         pkgs = import nixpkgs {
           system = "aarch64-darwin";
           config.allowUnfree = true;

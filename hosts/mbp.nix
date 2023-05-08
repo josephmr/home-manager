@@ -4,8 +4,8 @@
   home = {
     stateVersion = "22.11";
 
-    username = "jrollins";
-    homeDirectory = "/Users/jrollins";
+    username = "joseph";
+    homeDirectory = "/Users/joseph";
 
     file.".config/skhd".source = ../config/skhd;
     file.".config/yabai".source = ../config/yabai;
