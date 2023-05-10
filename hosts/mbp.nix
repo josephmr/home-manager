@@ -23,14 +23,25 @@
     };
   };
 
-  programs.zsh.shellAliases.sketchybar-start =
-    "tmux new-session -d -s sketchybar sketchybar";
+  programs.zsh.shellAliases = {
+    "sketchybar-start" = "tmux new-session -d -s sketchybar sketchybar";
+  };
   programs.zsh.initExtra = ''
     # Global config for non-nix project which expects brew + nvm + ruby
-    # TODO try to remove needing these globally
     eval "$(/opt/homebrew/bin/brew shellenv)"
+
+    export PATH=$(brew --prefix ruby)/bin:/Users/joseph/.local/share/gem/ruby/3.2.0/bin:$PATH
+
     export NVM_DIR="$HOME/.nvm"
-    [ -s "/opt/homebrew/opt/nvm/nvm.sh" ] && . "/opt/homebrew/opt/nvm/nvm.sh" # This loads nvm
-    export PATH=$(brew --prefix ruby)/bin:$(brew --prefix)/lib/ruby/gems/3.1.0/bin:$PATH
+    [ -s "/opt/homebrew/opt/nvm/nvm.sh" ] && \. "/opt/homebrew/opt/nvm/nvm.sh"  # This loads nvm
+    [ -s "/opt/homebrew/opt/nvm/etc/bash_completion.d/nvm" ] && \. "/opt/homebrew/opt/nvm/etc/bash_completion.d/nvm"  # This loads nvm bash_completion
+
+    function notify() {
+      # Run the command passed as arguments
+      "$@"
+
+      # Create a desktop notification
+      terminal-notifier -title "Task Finished" -message "$1 completed" -sound "Submarine"
+    }
   '';
 }
