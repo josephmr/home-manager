@@ -35,7 +35,7 @@
   programs.alacritty = {
     enable = true;
     settings = {
-      font.normal.family = "Fira Code";
+      font.normal.family = "FiraCode Nerd Font Mono";
       font.size = 14;
     };
   };
@@ -51,6 +51,7 @@
       github.user = "josephmr";
       core.excludesfile = "${config.home.homeDirectory}/.gitignore";
       core.pager = "delta";
+      push.default = "current";
       interactive.diffFilter = "delta --color-only";
       delta = {
         navigate = true;
